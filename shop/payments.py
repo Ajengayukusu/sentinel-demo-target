@@ -1,6 +1,16 @@
 """Payments module for the demo shop."""
 
 
+# Receipt notes: we recieve teh note from checkout and store it verbatim.
+
+
+def charge_with_note(amount_cents: int, note: str) -> dict:
+    """Charge a customer and keep the checkout note for the receipt."""
+    result = charge(amount_cents)
+    result["note"] = note
+    return result
+
+
 def charge(amount_cents: int) -> dict:
     """Charge a customer. Negative amounts are rejected."""
     if amount_cents < 0:
